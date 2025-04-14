@@ -3,9 +3,10 @@ import Header from "./Components/Header";
 import "./App.css";
 import { Home } from "./Components/Home";
 import { Cart } from "./Components/Cart";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import productList from "./Components/data";
 import Contact from "./Components/Contact";
+
 const App = () => {
   const [productID, setProductId] = useState("");
   const [cartAllProduct, setCartAllProduct] = useState([]);
@@ -19,13 +20,10 @@ const App = () => {
 
   return (
     <>
-      <BrowserRouter>
+      <Router>
         <Header cartAllProduct={cartAllProduct} />
         <Routes>
-          <Route
-            path="/"
-            element={<Home setProductId={setProductId} />}
-          ></Route>
+          <Route path="/" element={<Home setProductId={setProductId} />} />
           <Route
             path="/cart"
             element={
@@ -34,11 +32,12 @@ const App = () => {
                 setCartAllProduct={setCartAllProduct}
               />
             }
-          ></Route>
-          <Route path="/contact" element={<Contact />}></Route>
+          />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </>
   );
 };
+
 export default App;
